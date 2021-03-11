@@ -24,24 +24,19 @@ class DishDetail extends Component{
     }
     renderComments(array) {
         if (array.length != 0) {
-            let date;
             return (
                 <div>
                     <h4>Comments</h4>
                     {array.map(comment => (
-                        date = new Intl.DateTimeFormat('en-US', {
-                        year:'numeric',
-                        month: 'short',
-                        day: '2-digit'
-                        }).format(new Date(comment.date)),
                         <ul className="list-unstyled">
                             <li>
                                 <p>{comment.comment}</p>
-                                <p>-- {comment.author} , {date}</p>
+                                <p>-- {comment.author} , 
+                                {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', 
+                                day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
                             </li>
                         </ul>
-                    )
-                    )}
+                    ))}
                 </div>
             );
         }
